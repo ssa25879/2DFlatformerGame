@@ -1,0 +1,689 @@
+fileFormatVersion: 2
+guid: 1c62a90f038f71446a2cfb58c1817b6e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4339424192189383436
+    second: EnvironmentLowerLayer_ForestRuins_0
+  - first:
+      213: 2539190934387862174
+    second: EnvironmentLowerLayer_ForestRuins_1
+  - first:
+      213: 8099426490150736573
+    second: EnvironmentLowerLayer_ForestRuins_2
+  - first:
+      213: 6021714419617299085
+    second: EnvironmentLowerLayer_ForestRuins_3
+  - first:
+      213: 3217153404634506836
+    second: EnvironmentLowerLayer_ForestRuins_4
+  - first:
+      213: -5411068731592836179
+    second: EnvironmentLowerLayer_ForestRuins_5
+  - first:
+      213: 1253779130641009840
+    second: EnvironmentLowerLayer_ForestRuins_6
+  - first:
+      213: -987103135658021066
+    second: EnvironmentLowerLayer_ForestRuins_7
+  - first:
+      213: -6875799759816438690
+    second: EnvironmentLowerLayer_ForestRuins_8
+  - first:
+      213: -4208407179509648745
+    second: EnvironmentLowerLayer_ForestRuins_9
+  - first:
+      213: -7346194853891919730
+    second: EnvironmentLowerLayer_ForestRuins_10
+  - first:
+      213: -7947879913037779854
+    second: EnvironmentLowerLayer_ForestRuins_11
+  - first:
+      213: -1285398459997651901
+    second: EnvironmentLowerLayer_ForestRuins_12
+  - first:
+      213: 4519771794357046430
+    second: EnvironmentLowerLayer_ForestRuins_13
+  - first:
+      213: -145426755504946218
+    second: EnvironmentLowerLayer_ForestRuins_14
+  - first:
+      213: -591886129542015936
+    second: EnvironmentLowerLayer_ForestRuins_15
+  - first:
+      213: -3506652138726151772
+    second: EnvironmentLowerLayer_ForestRuins_16
+  - first:
+      213: 3694519761748099924
+    second: EnvironmentLowerLayer_ForestRuins_17
+  - first:
+      213: -2167672783063705227
+    second: EnvironmentLowerLayer_ForestRuins_18
+  - first:
+      213: 2673981383458880664
+    second: EnvironmentLowerLayer_ForestRuins_19
+  - first:
+      213: -1407069733607371997
+    second: EnvironmentLowerLayer_ForestRuins_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: EnvironmentLowerLayer_ForestRuins_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 149
+        height: 1024
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fcb0de30b447c3c0800000000000000
+      internalID: -4339424192189383436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvironmentLowerLayer_ForestRuins_1
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 0
+        width: 202
+        height: 1024
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9aa41d93b40d3320800000000000000
+      internalID: 2539190934387862174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvironmentLowerLayer_ForestRuins_2
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 867
+        width: 43
+        height: 157
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db2d2ddea71f66070800000000000000
+      internalID: 8099426490150736573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvironmentLowerLayer_ForestRuins_3
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 0
+        width: 218
+        height: 1021
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8af2283c5d619350800000000000000
+      internalID: 6021714419617299085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvironmentLowerLayer_ForestRuins_4
+      rect:
+        serializedVersion: 2
+        x: 523
+        y: 1010
+        width: 11
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 456ad2fe9ff95ac20800000000000000
+      internalID: 3217153404634506836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvironmentLowerLayer_ForestRuins_5
+      rect:
+        serializedVersion: 2
+        x: 657
+        y: 0
+        width: 259
+        height: 1024
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dab7f2e58a508e4b0800000000000000
+      internalID: -5411068731592836179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvironmentLowerLayer_ForestRuins_6
+      rect:
+        serializedVersion: 2
+        x: 920
+        y: 0
+        width: 228
+        height: 1024
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bcc7acf971566110800000000000000
+      internalID: 1253779130641009840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvironmentLowerLayer_ForestRuins_7
+      rect:
+        serializedVersion: 2
+        x: 1147
+        y: 0
+        width: 21
+        height: 1024
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63fed629dea1d42f0800000000000000
+      internalID: -987103135658021066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvironmentLowerLayer_ForestRuins_8
+      rect:
+        serializedVersion: 2
+        x: 1177
+        y: 0
+        width: 254
+        height: 1024
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5ccc694c804490a0800000000000000
+      internalID: -6875799759816438690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvironmentLowerLayer_ForestRuins_9
+      rect:
+        serializedVersion: 2
+        x: 1209
+        y: 982
+        width: 14
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 792bf13a7fbb895c0800000000000000
+      internalID: -4208407179509648745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvironmentLowerLayer_ForestRuins_10
+      rect:
+        serializedVersion: 2
+        x: 1463
+        y: 874
+        width: 32
+        height: 147
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8038f2c3b21d0a90800000000000000
+      internalID: -7346194853891919730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvironmentLowerLayer_ForestRuins_11
+      rect:
+        serializedVersion: 2
+        x: 1553
+        y: 868
+        width: 25
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27cabe9245573b190800000000000000
+      internalID: -7947879913037779854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvironmentLowerLayer_ForestRuins_12
+      rect:
+        serializedVersion: 2
+        x: 1635
+        y: 962
+        width: 17
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34c710539e8592ee0800000000000000
+      internalID: -1285398459997651901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvironmentLowerLayer_ForestRuins_13
+      rect:
+        serializedVersion: 2
+        x: 1648
+        y: 1017
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9c4b7c008479be30800000000000000
+      internalID: 4519771794357046430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvironmentLowerLayer_ForestRuins_14
+      rect:
+        serializedVersion: 2
+        x: 1683
+        y: 0
+        width: 246
+        height: 1024
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d34a49e2275bfdf0800000000000000
+      internalID: -145426755504946218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvironmentLowerLayer_ForestRuins_15
+      rect:
+        serializedVersion: 2
+        x: 1931
+        y: 0
+        width: 117
+        height: 1024
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 044da2d73b239c7f0800000000000000
+      internalID: -591886129542015936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvironmentLowerLayer_ForestRuins_16
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 0
+        width: 65
+        height: 764
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a92d58757ed55fc0800000000000000
+      internalID: -3506652138726151772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvironmentLowerLayer_ForestRuins_17
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 762
+        width: 30
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45308ae1622954330800000000000000
+      internalID: 3694519761748099924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvironmentLowerLayer_ForestRuins_18
+      rect:
+        serializedVersion: 2
+        x: 631
+        y: 0
+        width: 27
+        height: 971
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5799430b611eae1e0800000000000000
+      internalID: -2167672783063705227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvironmentLowerLayer_ForestRuins_19
+      rect:
+        serializedVersion: 2
+        x: 1438
+        y: 0
+        width: 226
+        height: 971
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89cf211a6e3eb1520800000000000000
+      internalID: 2673981383458880664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvironmentLowerLayer_ForestRuins_20
+      rect:
+        serializedVersion: 2
+        x: 1663
+        y: 0
+        width: 18
+        height: 999
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32b01224885197ce0800000000000000
+      internalID: -1407069733607371997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      EnvironmentLowerLayer_ForestRuins_0: -4339424192189383436
+      EnvironmentLowerLayer_ForestRuins_1: 2539190934387862174
+      EnvironmentLowerLayer_ForestRuins_10: -7346194853891919730
+      EnvironmentLowerLayer_ForestRuins_11: -7947879913037779854
+      EnvironmentLowerLayer_ForestRuins_12: -1285398459997651901
+      EnvironmentLowerLayer_ForestRuins_13: 4519771794357046430
+      EnvironmentLowerLayer_ForestRuins_14: -145426755504946218
+      EnvironmentLowerLayer_ForestRuins_15: -591886129542015936
+      EnvironmentLowerLayer_ForestRuins_16: -3506652138726151772
+      EnvironmentLowerLayer_ForestRuins_17: 3694519761748099924
+      EnvironmentLowerLayer_ForestRuins_18: -2167672783063705227
+      EnvironmentLowerLayer_ForestRuins_19: 2673981383458880664
+      EnvironmentLowerLayer_ForestRuins_2: 8099426490150736573
+      EnvironmentLowerLayer_ForestRuins_20: -1407069733607371997
+      EnvironmentLowerLayer_ForestRuins_3: 6021714419617299085
+      EnvironmentLowerLayer_ForestRuins_4: 3217153404634506836
+      EnvironmentLowerLayer_ForestRuins_5: -5411068731592836179
+      EnvironmentLowerLayer_ForestRuins_6: 1253779130641009840
+      EnvironmentLowerLayer_ForestRuins_7: -987103135658021066
+      EnvironmentLowerLayer_ForestRuins_8: -6875799759816438690
+      EnvironmentLowerLayer_ForestRuins_9: -4208407179509648745
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,73 @@
+# Unity generated folders
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Mm]emoryCaptures/
+[Rr]ecordings/
+[Uu]ser[Ss]ettings/
+
+# Local agent/tooling state
+.agents/
+.codex/
+.vscode/
+.vs/
+.idea/
+Temp_UI_Handoff_Extract/
+
+# Local backups generated during Codex/Unity work
+[Bb]ackups/
+**/[Bb]ackup/
+**/[Bb]ackups/
+**/[Bb]ackup.meta
+**/[Bb]ackups.meta
+*.bak
+*.bak.meta
+
+# Unity generated project files
+*.csproj
+*.sln
+*.slnx
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# Unity crash/debug output
+sysinfo.txt
+*.stackdump
+crashlytics-build.properties
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.tmp
+*.log
+
+# Secrets and signing material
+.env
+.env.*
+*.secret
+*.secrets
+secrets.*
+*.token
+*.credentials
+*.key
+*.pem
+*.p12
+*.pfx
+*.jks
+*.keystore
+*.mobileprovision
+
+# Optional local package/cache artifacts
+*.tgz
+*.zip

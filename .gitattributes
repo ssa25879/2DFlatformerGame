@@ -1,0 +1,25 @@
+* text=auto
+
+# Unity text assets
+*.cs text eol=crlf
+*.shader text
+*.shadergraph text
+*.asmdef text
+*.json text
+*.asset text
+*.anim text
+*.controller text
+*.mat text
+*.meta text
+*.prefab text
+*.unity text
+
+# Binary assets
+*.ai binary
+*.fbx binary
+*.otf binary
+*.pdf binary
+*.png binary
+*.psd binary
+*.ttf binary
+*.wav binary
