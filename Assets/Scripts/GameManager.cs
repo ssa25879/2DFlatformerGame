@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public GameObject gameoverUI;
     public GameObject clearUI;
     public float restartInputDelay = 0.25f;
+    public string nextSceneName = "";
 
     private int score = 0;
     private float stateChangedTime;
@@ -23,6 +24,13 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (CanLoadNextScene(out string sceneName))
+        {
+            UniRunLogger.Info("GameManager", "Loading next scene: " + sceneName, this);
+            SceneManager.LoadScene(sceneName);
+            return;
+        }
+
         if (!CanRestart())
         {
             return;
@@ -50,9 +58,31 @@ public class GameManager : MonoBehaviour
             Input.GetKeyDown(KeyCode.Space));
     }
 
+    private bool CanLoadNextScene(out string sceneName)
+    {
+        sceneName = "";
+        if (!isCleared || isGameover)
+        {
+            return false;
+        }
+
+        if (Time.time - stateChangedTime < restartInputDelay)
+        {
+            return false;
+        }
+
+        return TryGetNextSceneForTest(nextSceneName, out sceneName);
+    }
+
     public static bool IsRestartInputPressed(bool leftMouseDown, bool rightMouseDown, bool spaceDown)
     {
         return leftMouseDown || rightMouseDown || spaceDown;
+    }
+
+    public static bool TryGetNextSceneForTest(string configuredNextSceneName, out string sceneName)
+    {
+        sceneName = string.IsNullOrWhiteSpace(configuredNextSceneName) ? "" : configuredNextSceneName.Trim();
+        return sceneName.Length > 0;
     }
 
     private void InitializeSingleton()

@@ -12,6 +12,13 @@ using UnityEngine.UI;
 public static class CodexDashPlatformerSceneSetup
 {
     private const string ScenePath = "Assets/Scene/Main.unity";
+    private const string Stage01ScenePath = StageSceneConfig.Stage01Path;
+    private const string Stage02ScenePath = StageSceneConfig.Stage02Path;
+    private const string Stage03ScenePath = StageSceneConfig.Stage03Path;
+    private const string Stage04ScenePath = StageSceneConfig.Stage04Path;
+    private const string Stage02SceneName = StageSceneConfig.Stage02Name;
+    private const string Stage03SceneName = StageSceneConfig.Stage03Name;
+    private const string Stage04SceneName = StageSceneConfig.Stage04Name;
     private const string PlayerControllerPath = "Assets/Animations/Player.controller";
     private const float DashRechargeTriggerRadius = 1.05f;
     private const float PlayerSpriteScale = 0.66f;
@@ -22,6 +29,20 @@ public static class CodexDashPlatformerSceneSetup
     private const float DeadZoneY = -6.5f;
     private const float DeadZoneHeight = 1f;
     private static readonly Vector2 PlayerColliderSize = new Vector2(1f, 1.5f);
+
+    private struct StageObjectSpec
+    {
+        public string Name;
+        public Vector2 Position;
+        public Vector2 Size;
+
+        public StageObjectSpec(string name, Vector2 position, Vector2 size)
+        {
+            Name = name;
+            Position = position;
+            Size = size;
+        }
+    }
 
     public static void ConfigureDashPlatformer()
     {
@@ -190,6 +211,144 @@ public static class CodexDashPlatformerSceneSetup
         EditorSceneManager.SaveScene(scene);
         AssetDatabase.SaveAssets();
         Debug.Log("[CodexDashPlatformerSceneSetup] Stage extension applied.");
+    }
+
+    public static void CreateOrUpdateStageProgressionScenes()
+    {
+        AddTag("Dead");
+        AddTag("Trap");
+
+        BackupAssetFile(Stage01ScenePath);
+        ConfigureStageScene(Stage01ScenePath, "STAGE 1-1", Stage02SceneName, null);
+        CreateOrUpdateStage02Scene();
+        CreateOrUpdateStage03Scene();
+        CreateOrUpdateStage04Scene();
+
+        AssetDatabase.SaveAssets();
+        Debug.Log("[CodexDashPlatformerSceneSetup] Stage progression scenes created or updated.");
+    }
+
+    public static void CreateOrUpdateStage02Scene()
+    {
+        CopyStageSceneFromBaseline(Stage02ScenePath);
+        ConfigureStageScene(
+            Stage02ScenePath,
+            "STAGE 1-2",
+            Stage03SceneName,
+            () => ApplyStageProgressionLayout(
+                new[]
+                {
+                    new StageObjectSpec("Stage 1-2 Start Platform", new Vector2(-6f, -2.8f), new Vector2(3.8f, 0.5f)),
+                    new StageObjectSpec("Stage 1-2 Dash Approach Platform", new Vector2(-0.8f, -1.25f), new Vector2(3f, 0.5f)),
+                    new StageObjectSpec("Stage 1-2 Chain Platform", new Vector2(5.4f, 0.15f), new Vector2(2.8f, 0.5f)),
+                    new StageObjectSpec("Stage 1-2 Goal Platform", new Vector2(12.6f, 0.9f), new Vector2(3.2f, 0.5f)),
+                },
+                new[]
+                {
+                    new StageObjectSpec("Stage 1-2 DashRecharge Pickup A", new Vector2(2.2f, 0.15f), Vector2.zero),
+                    new StageObjectSpec("Stage 1-2 DashRecharge Pickup B", new Vector2(8.7f, 1.65f), Vector2.zero),
+                },
+                new[]
+                {
+                    new StageObjectSpec("Stage 1-2 Trap A", new Vector2(-0.8f, -0.65f), Vector2.zero),
+                    new StageObjectSpec("Stage 1-2 Trap B", new Vector2(5.4f, 0.75f), Vector2.zero),
+                },
+                new Vector2(14.1f, 1.85f)));
+    }
+
+    public static void CreateOrUpdateStage03Scene()
+    {
+        CopyStageSceneFromBaseline(Stage03ScenePath);
+        ConfigureStageScene(
+            Stage03ScenePath,
+            "STAGE 1-3",
+            Stage04SceneName,
+            () => ApplyStageProgressionLayout(
+                new[]
+                {
+                    new StageObjectSpec("Stage 1-3 Start Platform", new Vector2(-6f, -2.8f), new Vector2(3.5f, 0.5f)),
+                    new StageObjectSpec("Stage 1-3 Precision Platform", new Vector2(-0.2f, -1.05f), new Vector2(2.6f, 0.5f)),
+                    new StageObjectSpec("Stage 1-3 Midair Chain Platform", new Vector2(6.4f, 0.35f), new Vector2(2.4f, 0.5f)),
+                    new StageObjectSpec("Stage 1-3 Spike Bridge Platform", new Vector2(13.8f, 1.05f), new Vector2(2.5f, 0.5f)),
+                    new StageObjectSpec("Stage 1-3 Goal Platform", new Vector2(21.8f, 1.55f), new Vector2(2.9f, 0.5f)),
+                },
+                new[]
+                {
+                    new StageObjectSpec("Stage 1-3 DashRecharge Pickup A", new Vector2(2.7f, 0.35f), Vector2.zero),
+                    new StageObjectSpec("Stage 1-3 DashRecharge Pickup B", new Vector2(9.9f, 1.45f), Vector2.zero),
+                    new StageObjectSpec("Stage 1-3 DashRecharge Pickup C", new Vector2(17.4f, 2.15f), Vector2.zero),
+                },
+                new[]
+                {
+                    new StageObjectSpec("Stage 1-3 Trap A", new Vector2(-0.2f, -0.45f), Vector2.zero),
+                    new StageObjectSpec("Stage 1-3 Trap B", new Vector2(6.4f, 0.95f), Vector2.zero),
+                    new StageObjectSpec("Stage 1-3 Trap C", new Vector2(12.6f, 1.65f), Vector2.zero),
+                    new StageObjectSpec("Stage 1-3 Trap D", new Vector2(15f, 1.65f), Vector2.zero),
+                },
+                new Vector2(23.3f, 2.55f)));
+    }
+
+    public static void CreateOrUpdateStage04Scene()
+    {
+        CopyStageSceneFromBaseline(Stage04ScenePath);
+        ConfigureStageScene(
+            Stage04ScenePath,
+            "STAGE 1-4",
+            "",
+            () => ApplyStageProgressionLayout(
+                new[]
+                {
+                    new StageObjectSpec("Stage 1-4 Start Platform", new Vector2(-6f, -2.8f), new Vector2(3.3f, 0.5f)),
+                    new StageObjectSpec("Stage 1-4 Narrow Entry Platform", new Vector2(0.2f, -1f), new Vector2(2.3f, 0.5f)),
+                    new StageObjectSpec("Stage 1-4 Vertical Dash Platform", new Vector2(7.4f, 0.25f), new Vector2(2.1f, 0.5f)),
+                    new StageObjectSpec("Stage 1-4 Needle Landing Platform", new Vector2(15.6f, 1.05f), new Vector2(2f, 0.5f)),
+                    new StageObjectSpec("Stage 1-4 Recharge Ledge Platform", new Vector2(24.4f, 1.65f), new Vector2(1.9f, 0.5f)),
+                    new StageObjectSpec("Stage 1-4 Final Platform", new Vector2(33f, 2.15f), new Vector2(2.6f, 0.5f)),
+                },
+                new[]
+                {
+                    new StageObjectSpec("Stage 1-4 DashRecharge Pickup A", new Vector2(3.2f, 0.45f), Vector2.zero),
+                    new StageObjectSpec("Stage 1-4 DashRecharge Pickup B", new Vector2(11.2f, 1.4f), Vector2.zero),
+                    new StageObjectSpec("Stage 1-4 DashRecharge Pickup C", new Vector2(20.3f, 2.25f), Vector2.zero),
+                    new StageObjectSpec("Stage 1-4 DashRecharge Pickup D", new Vector2(28.8f, 2.95f), Vector2.zero),
+                },
+                new[]
+                {
+                    new StageObjectSpec("Stage 1-4 Trap A", new Vector2(0.2f, -0.4f), Vector2.zero),
+                    new StageObjectSpec("Stage 1-4 Trap B", new Vector2(7.4f, 0.85f), Vector2.zero),
+                    new StageObjectSpec("Stage 1-4 Trap C", new Vector2(13.8f, 1.65f), Vector2.zero),
+                    new StageObjectSpec("Stage 1-4 Trap D", new Vector2(17.5f, 1.65f), Vector2.zero),
+                    new StageObjectSpec("Stage 1-4 Trap E", new Vector2(24.4f, 2.25f), Vector2.zero),
+                    new StageObjectSpec("Stage 1-4 Trap F", new Vector2(30.5f, 2.75f), Vector2.zero),
+                },
+                new Vector2(34.5f, 3.15f)));
+    }
+
+    public static void RegisterStageScenesInBuildSettings()
+    {
+        string[] stagePaths =
+        {
+            Stage01ScenePath,
+            Stage02ScenePath,
+            Stage03ScenePath,
+            Stage04ScenePath,
+        };
+
+        var scenes = stagePaths
+            .Select(path => new EditorBuildSettingsScene(path, true))
+            .ToList();
+
+        foreach (EditorBuildSettingsScene existingScene in EditorBuildSettings.scenes)
+        {
+            if (!stagePaths.Contains(existingScene.path))
+            {
+                scenes.Add(existingScene);
+            }
+        }
+
+        EditorBuildSettings.scenes = scenes.ToArray();
+        AssetDatabase.SaveAssets();
+        Debug.Log("[CodexDashPlatformerSceneSetup] Stage progression scenes registered in Build Settings.");
     }
 
     public static void ApplyPlayerSpriteScale()
@@ -369,6 +528,132 @@ public static class CodexDashPlatformerSceneSetup
             }
         }
     }
+
+    private static void CopyStageSceneFromBaseline(string targetScenePath)
+    {
+        if (AssetDatabase.LoadAssetAtPath<SceneAsset>(Stage01ScenePath) == null)
+        {
+            throw new InvalidOperationException("Stage01 scene is missing: " + Stage01ScenePath);
+        }
+
+        if (AssetDatabase.LoadAssetAtPath<SceneAsset>(targetScenePath) != null)
+        {
+            BackupAssetFile(targetScenePath);
+            AssetDatabase.DeleteAsset(targetScenePath);
+        }
+
+        if (!AssetDatabase.CopyAsset(Stage01ScenePath, targetScenePath))
+        {
+            throw new InvalidOperationException("Failed to copy scene asset: " + targetScenePath);
+        }
+
+        AssetDatabase.ImportAsset(targetScenePath);
+    }
+
+    private static void ConfigureStageScene(string scenePath, string stageLabel, string nextSceneName, Action configureLayout)
+    {
+        var scene = EditorSceneManager.OpenScene(scenePath, OpenSceneMode.Single);
+
+        configureLayout?.Invoke();
+        ConfigureStageLabel(stageLabel);
+        ConfigureStageNextSceneName(nextSceneName);
+
+        EditorSceneManager.MarkSceneDirty(scene);
+        EditorSceneManager.SaveScene(scene);
+    }
+
+    private static void ApplyStageProgressionLayout(
+        StageObjectSpec[] platforms,
+        StageObjectSpec[] dashRecharges,
+        StageObjectSpec[] traps,
+        Vector2 goalPosition)
+    {
+        GameObject stage = FindStageProgressionRoot();
+        ClearStageChildren(stage.transform);
+
+        foreach (StageObjectSpec platform in platforms)
+        {
+            CreateOrUpdatePlatform(stage.transform, platform.Name, platform.Position, platform.Size);
+        }
+
+        foreach (StageObjectSpec dashRecharge in dashRecharges)
+        {
+            CreateOrUpdateDashRecharge(stage.transform, dashRecharge.Name, dashRecharge.Position);
+        }
+
+        foreach (StageObjectSpec trap in traps)
+        {
+            CreateOrUpdateTrap(stage.transform, trap.Name, trap.Position);
+        }
+
+        MoveGoalToExtendedEndpoint(stage.transform, goalPosition);
+        ConfigureDeadZone(stage.transform);
+    }
+
+    private static GameObject FindStageProgressionRoot()
+    {
+        GameObject stage = GameObject.Find("Relic Dash Forest Ruins Stage") ?? GameObject.Find("Dash Platformer Stage");
+        if (stage != null)
+        {
+            return stage;
+        }
+
+        return new GameObject("Relic Dash Forest Ruins Stage");
+    }
+
+    private static void ClearStageChildren(Transform stage)
+    {
+        for (int i = stage.childCount - 1; i >= 0; i--)
+        {
+            GameObject child = stage.GetChild(i).gameObject;
+            if (child.GetComponent<Collider2D>() != null)
+            {
+                UnityEngine.Object.DestroyImmediate(child);
+            }
+        }
+    }
+
+    private static void ConfigureStageLabel(string stageLabel)
+    {
+        foreach (TextMeshProUGUI label in UnityEngine.Object.FindObjectsByType<TextMeshProUGUI>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+        {
+            if (label.name == "StageChip" || label.text.StartsWith("STAGE 1-", StringComparison.Ordinal))
+            {
+                label.text = stageLabel;
+                EditorUtility.SetDirty(label);
+            }
+        }
+    }
+
+    private static void ConfigureStageNextSceneName(string nextSceneName)
+    {
+        GameManager manager = UnityEngine.Object.FindFirstObjectByType<GameManager>(FindObjectsInactive.Include);
+        if (manager == null)
+        {
+            manager = FindOrCreate("GameManager").AddComponent<GameManager>();
+        }
+
+        manager.nextSceneName = nextSceneName;
+        EditorUtility.SetDirty(manager);
+    }
+
+    private static void BackupAssetFile(string assetPath)
+    {
+        string fullAssetPath = Path.GetFullPath(Path.Combine(Application.dataPath, "../", assetPath));
+        if (!File.Exists(fullAssetPath))
+        {
+            return;
+        }
+
+        string backupRoot = Path.GetFullPath(Path.Combine(
+            Application.dataPath,
+            "../Backups",
+            DateTime.Now.ToString("yyyyMMdd_HHmmss") + "_stage_progression_editor"));
+        string backupPath = Path.Combine(backupRoot, assetPath);
+        Directory.CreateDirectory(Path.GetDirectoryName(backupPath));
+        File.Copy(fullAssetPath, backupPath, true);
+    }
+
     private static GameObject FindOrCreate(string name)
     {
         GameObject found = GameObject.Find(name);
@@ -1182,5 +1467,3 @@ public static class CodexDashPlatformerSceneSetup
         tagManager.ApplyModifiedProperties();
     }
 }
-
-

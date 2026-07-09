@@ -91,6 +91,34 @@ public class GameManagerEditModeTests
     }
 
     [Test]
+    public void TryGetNextSceneForTest_ReturnsFalseWhenNextSceneNameIsEmpty()
+    {
+        Assert.IsFalse(GameManager.TryGetNextSceneForTest("", out string nextSceneName));
+        Assert.AreEqual("", nextSceneName);
+    }
+
+    [Test]
+    public void TryGetNextSceneForTest_ReturnsFalseWhenNextSceneNameIsWhitespace()
+    {
+        Assert.IsFalse(GameManager.TryGetNextSceneForTest("   ", out string nextSceneName));
+        Assert.AreEqual("", nextSceneName);
+    }
+
+    [Test]
+    public void TryGetNextSceneForTest_ReturnsNextSceneNameWhenConfigured()
+    {
+        Assert.IsTrue(GameManager.TryGetNextSceneForTest("RelicDash_ForestRuins_Stage02", out string nextSceneName));
+        Assert.AreEqual("RelicDash_ForestRuins_Stage02", nextSceneName);
+    }
+
+    [Test]
+    public void TryGetNextSceneForTest_TrimsConfiguredNextSceneName()
+    {
+        Assert.IsTrue(GameManager.TryGetNextSceneForTest(" RelicDash_ForestRuins_Stage02 ", out string nextSceneName));
+        Assert.AreEqual("RelicDash_ForestRuins_Stage02", nextSceneName);
+    }
+
+    [Test]
     public void OnPlayerDead_ActivatesGameOverStateOnly()
     {
         manager.OnPlayerDead();
