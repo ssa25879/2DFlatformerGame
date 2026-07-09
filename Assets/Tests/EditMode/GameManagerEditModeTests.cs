@@ -74,7 +74,7 @@ public class GameManagerEditModeTests
         var duplicateManagerObject = new GameObject("GameManager_Duplicate");
         var duplicateManager = duplicateManagerObject.AddComponent<GameManager>();
 
-        LogAssert.Expect(LogType.Warning, "씬에 2개 이상의 게임 매니저가 존재합니다.");
+        LogAssert.Expect(LogType.Warning, "[GameManager] 씬에 2개 이상의 게임 매니저가 존재합니다.");
         duplicateManager.InitializeForTest();
 
         Assert.AreSame(originalManager, GameManager.instance);

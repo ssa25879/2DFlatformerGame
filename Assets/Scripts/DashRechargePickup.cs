@@ -29,6 +29,7 @@ public class DashRechargePickup : MonoBehaviour
         }
 
         player.RechargeDash();
+        UniRunLogger.Info("DashRechargePickup", "Pickup collected by " + player.name + ".", this);
         Collect(true);
     }
 
@@ -41,12 +42,14 @@ public class DashRechargePickup : MonoBehaviour
 
         if (respawnAfterSeconds <= 0f)
         {
+            UniRunLogger.Info("DashRechargePickup", "Pickup collected and deactivated without respawn.", this);
             gameObject.SetActive(false);
             return;
         }
 
         isCollected = true;
         SetPickupEnabled(false);
+        UniRunLogger.Info("DashRechargePickup", "Pickup hidden. Respawn in " + respawnAfterSeconds + " seconds.", this);
 
         if (startRespawnTimer && gameObject.activeInHierarchy)
         {
@@ -81,6 +84,7 @@ public class DashRechargePickup : MonoBehaviour
         isCollected = false;
         respawnCoroutine = null;
         SetPickupEnabled(true);
+        UniRunLogger.Info("DashRechargePickup", "Pickup respawned.", this);
     }
 
     private void SetPickupEnabled(bool enabled)
@@ -117,6 +121,8 @@ public class DashRechargePickup : MonoBehaviour
         {
             pickupCollider.enabled = false;
         }
+
+        UniRunLogger.Info("DashRechargePickup", "Pickup respawn warning shown.", this);
     }
 
     private void CacheRenderers()

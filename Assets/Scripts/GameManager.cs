@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
+        UniRunLogger.Info("GameManager", "Restarting scene: " + SceneManager.GetActiveScene().name, this);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -62,7 +63,7 @@ public class GameManager : MonoBehaviour
         }
         else if (instance != this)
         {
-            Debug.LogWarning("씬에 2개 이상의 게임 매니저가 존재합니다.");
+            UniRunLogger.Warning("GameManager", "씬에 2개 이상의 게임 매니저가 존재합니다.", this);
             if (Application.isPlaying)
             {
                 Destroy(gameObject);
@@ -82,6 +83,7 @@ public class GameManager : MonoBehaviour
         }
 
         score += newScore;
+        UniRunLogger.Debug("GameManager", "Score added: " + newScore + ", Total: " + score, this);
         if (scoreText != null)
         {
             scoreText.text = score.ToString("000000");
@@ -97,6 +99,7 @@ public class GameManager : MonoBehaviour
 
         isGameover = true;
         stateChangedTime = Time.time;
+        UniRunLogger.Info("GameManager", "Game over state entered.", this);
         if (gameoverUI != null)
         {
             gameoverUI.SetActive(true);
@@ -117,6 +120,7 @@ public class GameManager : MonoBehaviour
 
         isCleared = true;
         stateChangedTime = Time.time;
+        UniRunLogger.Info("GameManager", "Stage clear state entered.", this);
         if (clearUI != null)
         {
             clearUI.SetActive(true);
