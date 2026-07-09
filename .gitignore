@@ -12,6 +12,7 @@
 # Local agent/tooling state
 .agents/
 .codex/
+.claude/
 .vscode/
 .vs/
 .idea/
