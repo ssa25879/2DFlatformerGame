@@ -420,11 +420,8 @@ public static class CodexDashPlatformerSceneSetup
     {
         var feedback = EnsureComponent<DashFeedback>(player);
         feedback.targetRenderer = player.GetComponent<SpriteRenderer>();
-        feedback.dashTrail = EnsureComponent<TrailRenderer>(player);
         feedback.dashColor = new Color(0.35f, 0.9f, 1f, 1f);
         feedback.CaptureDefaultColor();
-
-        ConfigureDashTrail(feedback.dashTrail);
     }
 
     private static void ConfigureDashAimIndicator(GameObject player)
@@ -436,8 +433,8 @@ public static class CodexDashPlatformerSceneSetup
         indicator.indicatorLength = 1.4f;
         indicator.lineWidth = 0.08f;
         indicator.showWhenDashUnavailable = true;
-        indicator.readyColor = new Color(0.2f, 1f, 1f, 0.85f);
-        indicator.unavailableColor = new Color(0.2f, 1f, 1f, 0.25f);
+        indicator.readyColor = new Color(0.9529412f, 0.827451f, 0.5411765f, 0.85f);
+        indicator.unavailableColor = new Color(0.9529412f, 0.827451f, 0.5411765f, 0.25f);
 
         line.positionCount = 2;
         line.useWorldSpace = true;
@@ -449,22 +446,6 @@ public static class CodexDashPlatformerSceneSetup
         line.startColor = indicator.readyColor;
         line.endColor = new Color(indicator.readyColor.r, indicator.readyColor.g, indicator.readyColor.b, indicator.readyColor.a * 0.35f);
         line.enabled = false;
-    }
-
-    private static void ConfigureDashTrail(TrailRenderer trail)
-    {
-        trail.emitting = false;
-        trail.time = 0.18f;
-        trail.startWidth = 0.45f;
-        trail.endWidth = 0.05f;
-        trail.minVertexDistance = 0.05f;
-        trail.numCornerVertices = 2;
-        trail.numCapVertices = 2;
-        trail.sortingLayerName = "Foreground";
-        trail.sortingOrder = -1;
-        trail.material = AssetDatabase.GetBuiltinExtraResource<Material>("Sprites-Default.mat");
-        trail.startColor = new Color(0.35f, 0.9f, 1f, 0.7f);
-        trail.endColor = new Color(0.35f, 0.9f, 1f, 0f);
     }
 
     private static void ConfigureCamera(Transform target)

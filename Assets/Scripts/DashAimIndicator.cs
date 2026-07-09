@@ -7,8 +7,8 @@ public class DashAimIndicator : MonoBehaviour
     public float indicatorLength = 1.4f;
     public float lineWidth = 0.08f;
     public bool showWhenDashUnavailable = true;
-    public Color readyColor = new Color(0.2f, 1f, 1f, 0.85f);
-    public Color unavailableColor = new Color(0.2f, 1f, 1f, 0.25f);
+    public Color readyColor = new Color(0.9529412f, 0.827451f, 0.5411765f, 0.85f);
+    public Color unavailableColor = new Color(0.9529412f, 0.827451f, 0.5411765f, 0.25f);
 
     private void Awake()
     {
@@ -33,7 +33,7 @@ public class DashAimIndicator : MonoBehaviour
             return;
         }
 
-        if (player.IsControlLocked || (!player.CanDash && !showWhenDashUnavailable))
+        if (player.IsControlLocked || (!player.CanDash && !showWhenDashUnavailable) || PlayerController.IsPointerOverUI())
         {
             SetVisible(false);
             return;

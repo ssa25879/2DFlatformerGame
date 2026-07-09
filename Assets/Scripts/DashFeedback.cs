@@ -3,7 +3,6 @@ using UnityEngine;
 public class DashFeedback : MonoBehaviour
 {
     public SpriteRenderer targetRenderer;
-    public TrailRenderer dashTrail;
     public Color dashColor = new Color(0.35f, 0.9f, 1f, 1f);
 
     private Color defaultColor = Color.white;
@@ -14,11 +13,6 @@ public class DashFeedback : MonoBehaviour
         if (targetRenderer == null)
         {
             targetRenderer = GetComponent<SpriteRenderer>();
-        }
-
-        if (dashTrail == null)
-        {
-            dashTrail = GetComponent<TrailRenderer>();
         }
 
         CaptureDefaultColor();
@@ -49,10 +43,5 @@ public class DashFeedback : MonoBehaviour
         }
 
         targetRenderer.color = isDashing ? dashColor : defaultColor;
-
-        if (dashTrail != null)
-        {
-            dashTrail.emitting = isDashing;
-        }
     }
 }

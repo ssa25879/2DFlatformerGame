@@ -10,12 +10,12 @@ public class DashStatusUI : MonoBehaviour
     public Image accent;
     public string readyText = "DASH READY";
     public string emptyText = "DASH EMPTY";
-    public Color readyColor = new Color(0.92f, 1f, 0.96f, 1f);
-    public Color emptyColor = new Color(1f, 0.82f, 0.78f, 1f);
-    public Color readyBackgroundColor = new Color(1f, 1f, 1f, 0.94f);
-    public Color emptyBackgroundColor = new Color(0.95f, 0.82f, 0.78f, 0.9f);
-    public Color readyAccentColor = Color.white;
-    public Color emptyAccentColor = new Color(1f, 0.55f, 0.45f, 1f);
+    public Color readyColor = new Color(0.14f, 0.20f, 0.19f, 1f);
+    public Color emptyColor = new Color(0.36f, 0.40f, 0.39f, 1f);
+    public Color readyBackgroundColor = new Color(0.93f, 0.95f, 0.93f, 0.96f);
+    public Color emptyBackgroundColor = new Color(0.87f, 0.89f, 0.88f, 0.94f);
+    public Color readyAccentColor = new Color(0.2f, 1f, 1f, 1f);
+    public Color emptyAccentColor = new Color(0.56f, 0.61f, 0.6f, 1f);
 
     private void Awake()
     {

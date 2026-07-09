@@ -183,11 +183,6 @@ public static class CodexDashPlatformerValidation
             errors.Add("DashFeedback.targetRenderer must be assigned.");
         }
 
-        if (feedback != null && feedback.dashTrail == null)
-        {
-            errors.Add("DashFeedback.dashTrail must be assigned.");
-        }
-
         var indicator = player.GetComponent<DashAimIndicator>();
         if (indicator != null)
         {
