@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public static class CodexRelicDashGameSceneBuilder
 {
-    private const string ScenePath = "Assets/Scene/RelicDash_ForestRuins_Stage01.unity";
+    private const string ScenePath = StageSceneConfig.Stage01Path;
     private const string UiRoot = "Assets/Sprites/UI";
     private const string GameplayRoot = "Assets/Sprites/Gameplay";
     private const string PlayerControllerPath = "Assets/Animations/Player.controller";
@@ -26,7 +26,7 @@ public static class CodexRelicDashGameSceneBuilder
         ConfigureImportedSprites();
 
         var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
-        scene.name = "RelicDash_ForestRuins_Stage01";
+        scene.name = StageSceneConfig.Stage01Name;
 
         GameObject player = BuildGameplayScene();
         BuildHudAndScreens(player);

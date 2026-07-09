@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public static class CodexRelicDashUIDiagnostics
 {
-    private const string ScenePath = "Assets/Scene/RelicDash_ForestRuins_Stage01.unity";
+    private const string ScenePath = StageSceneConfig.Stage01Path;
     private const string ReportPath = "Logs/RelicDash_UI_Diagnostics.txt";
     private const string ScreenshotFolder = "Logs/Screenshots";
 

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class RelicDashUILayoutEditModeTests
 {
-    private const string ScenePath = "Assets/Scene/RelicDash_ForestRuins_Stage01.unity";
+    private const string ScenePath = StageSceneConfig.Stage01Path;
 
     [SetUp]
     public void SetUp()
