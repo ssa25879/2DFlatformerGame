@@ -113,4 +113,28 @@ public class PlayerControllerEditModeTests
         Assert.IsTrue(PlayerController.ShouldFaceLeftForTest(-1f));
         Assert.IsFalse(PlayerController.ShouldFaceLeftForTest(0f));
     }
+
+    [Test]
+    public void CombineHorizontalInputForTest_PrefersKeyboardWhenPressed()
+    {
+        float combined = PlayerController.CombineHorizontalInputForTest(-1f, 1f);
+
+        Assert.AreEqual(-1f, combined, 0.0001f);
+    }
+
+    [Test]
+    public void CombineHorizontalInputForTest_FallsBackToMobileWhenKeyboardIdle()
+    {
+        float combined = PlayerController.CombineHorizontalInputForTest(0f, 1f);
+
+        Assert.AreEqual(1f, combined, 0.0001f);
+    }
+
+    [Test]
+    public void SetMobileHorizontalInput_UpdatesMobileHorizontalInputForTest()
+    {
+        controller.SetMobileHorizontalInput(-1f);
+
+        Assert.AreEqual(-1f, controller.MobileHorizontalInputForTest, 0.0001f);
+    }
 }

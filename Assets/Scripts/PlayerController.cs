@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
@@ -30,6 +31,7 @@ public class PlayerController : MonoBehaviour
     private bool isDead;
     private bool isClearLocked;
     private float horizontalInput;
+    private float mobileHorizontalInput;
     private int groundContactCount;
 
     public bool CanDash => canDash;
@@ -53,9 +55,10 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        horizontalInput = Input.GetAxisRaw("Horizontal");
+        float keyboardInput = Input.GetAxisRaw("Horizontal");
+        horizontalInput = CombineHorizontalInputForTest(keyboardInput, mobileHorizontalInput);
 
-        if (IsDashInputPressed() && canDash)
+        if (IsDashInputPressed() && canDash && !IsPointerOverUI())
         {
             StartCoroutine(Dash());
         }
@@ -83,6 +86,7 @@ public class PlayerController : MonoBehaviour
         Vector2 dashDirection = GetDashDirection();
         ApplyFacingFromDirection(dashDirection.x);
         playerRigidbody.linearVelocity = dashDirection * dashSpeed;
+        UniRunLogger.Info("Player", "Dash started. Direction: " + dashDirection + ", Speed: " + dashSpeed, this);
 
         if (playerAudio != null && dashClip != null)
         {
@@ -170,14 +174,47 @@ public class PlayerController : MonoBehaviour
         return directionX < -0.01f;
     }
 
+    public void SetMobileHorizontalInput(float value)
+    {
+        mobileHorizontalInput = value;
+    }
+
+    public float MobileHorizontalInputForTest => mobileHorizontalInput;
+
+    public static float CombineHorizontalInputForTest(float keyboardInput, float mobileInput)
+    {
+        return Mathf.Abs(keyboardInput) > 0.01f ? keyboardInput : mobileInput;
+    }
+
+    public static bool IsPointerOverUI()
+    {
+        if (EventSystem.current == null)
+        {
+            return false;
+        }
+
+        if (Input.touchCount > 0)
+        {
+            return EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId);
+        }
+
+        return EventSystem.current.IsPointerOverGameObject();
+    }
+
     public void RechargeDash()
     {
+        bool wasAvailable = canDash;
         canDash = true;
+        if (!wasAvailable)
+        {
+            UniRunLogger.Info("Player", "Dash recharged.", this);
+        }
     }
 
     public void LockForClear()
     {
         isClearLocked = true;
+        UniRunLogger.Info("Player", "Player controls locked after stage clear.", this);
 
         if (playerRigidbody != null)
         {
@@ -197,6 +234,7 @@ public class PlayerController : MonoBehaviour
         isDead = true;
         isDashing = false;
         SetDashFeedback(false);
+        UniRunLogger.Warning("Player", "Player died.", this);
 
         if (playerRigidbody != null)
         {
