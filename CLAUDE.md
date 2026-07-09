@@ -8,7 +8,7 @@
 - GitHub 원격 저장소: `https://github.com/ssa25879/2DFlatformerGame.git`
 - 기본 브랜치: `main`
 - 현재 프로젝트 목표: 기존 Unity 2D 러너 예제를 점프 없는 마우스 대시 기반 2D 플랫포머 프로토타입으로 전환하고 확장한다.
-- 주요 씬: `Assets/Scene/RelicDash_ForestRuins_Stage01.unity`
+- 주요 씬: `Assets/Scene/FR_Stage01.unity` ~ `FR_Stage04.unity` (Forest Ruins 스테이지 1-1 ~ 1-4, `RelicDash_ForestRuins_StageNN.unity`에서 이름 축약됨)
 - 보조/이전 씬: `Assets/Scene/Main.unity`
 
 ## 2. 사용자 응대 규칙
@@ -81,7 +81,7 @@
 - `Library/`, `Temp/`, `Logs/`, `UserSettings/`, 빌드 산출물, 백업은 Git에 포함하지 않는다.
 - 플랫폼 렌더링, Sorting Layer, 플레이어 크기, 콜라이더 등 사용자가 직접 조정한 영역은 함부로 재구성하지 않는다.
 - 씬 자동화 스크립트가 활성 씬을 바꿀 수 있으므로 작업 전후 현재 씬을 확인한다.
-- `RelicDash_ForestRuins_Stage01.unity`와 `Main.unity`를 혼동하지 않는다.
+- `FR_Stage01.unity`~`FR_Stage04.unity`와 `Main.unity`를 혼동하지 않는다.
 - 같은 프로젝트의 Unity `AssetImportWorker` 프로세스는 별도 프로젝트 창으로 오해하지 않는다.
 - Unity MCP나 batchmode가 컴파일/리로드 중 타임아웃될 수 있으므로 결과 파일과 Editor 로그를 함께 확인한다.
 - 일반 Unity CLI `-runTests`가 결과 XML을 만들지 않는 경우 `CodexEditModeTestRunner.RunEditModeTests`를 사용한다.
