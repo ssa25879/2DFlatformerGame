@@ -119,6 +119,27 @@ public class GameManagerEditModeTests
     }
 
     [Test]
+    public void TryGetStageNumberForTest_ParsesTrailingDigits()
+    {
+        Assert.IsTrue(GameManager.TryGetStageNumberForTest("FR_Stage02", out int stageNumber));
+        Assert.AreEqual(2, stageNumber);
+    }
+
+    [Test]
+    public void TryGetStageNumberForTest_ReturnsFalseWhenSceneNameHasNoTrailingDigits()
+    {
+        Assert.IsFalse(GameManager.TryGetStageNumberForTest("Intro", out int stageNumber));
+        Assert.AreEqual(0, stageNumber);
+    }
+
+    [Test]
+    public void TryGetStageToUnlockForTest_UnlocksNextStageFromCurrentStageScene()
+    {
+        Assert.IsTrue(GameManager.TryGetStageToUnlockForTest("FR_Stage03", out int stageToUnlock));
+        Assert.AreEqual(4, stageToUnlock);
+    }
+
+    [Test]
     public void OnPlayerDead_ActivatesGameOverStateOnly()
     {
         manager.OnPlayerDead();

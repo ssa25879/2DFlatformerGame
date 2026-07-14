@@ -7,15 +7,20 @@ using UnityEditor;
 using UnityEditor.Animations;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public static class CodexDashPlatformerSceneSetup
 {
     private const string ScenePath = "Assets/Scene/Main.unity";
+    private const string IntroScenePath = StageSceneConfig.IntroPath;
+    private const string StageSelectScenePath = StageSceneConfig.StageSelectPath;
     private const string Stage01ScenePath = StageSceneConfig.Stage01Path;
     private const string Stage02ScenePath = StageSceneConfig.Stage02Path;
     private const string Stage03ScenePath = StageSceneConfig.Stage03Path;
     private const string Stage04ScenePath = StageSceneConfig.Stage04Path;
+    private const string IntroSceneName = StageSceneConfig.IntroName;
+    private const string StageSelectSceneName = StageSceneConfig.StageSelectName;
     private const string Stage02SceneName = StageSceneConfig.Stage02Name;
     private const string Stage03SceneName = StageSceneConfig.Stage03Name;
     private const string Stage04SceneName = StageSceneConfig.Stage04Name;
@@ -228,6 +233,65 @@ public static class CodexDashPlatformerSceneSetup
         Debug.Log("[CodexDashPlatformerSceneSetup] Stage progression scenes created or updated.");
     }
 
+    public static void CreateOrUpdateMenuScenes()
+    {
+        CreateOrUpdateIntroScene();
+        CreateOrUpdateStageSelectScene();
+
+        AssetDatabase.SaveAssets();
+        Debug.Log("[CodexDashPlatformerSceneSetup] Menu scenes created or updated.");
+    }
+
+    public static void CreateOrUpdateIntroScene()
+    {
+        CreateFreshScene(IntroScenePath);
+
+        Camera camera = CreateMenuCamera();
+        camera.backgroundColor = Hex("1c2a28");
+
+        Canvas canvas = CreateMenuCanvas();
+        CreateEventSystem();
+
+        Image panel = CreateMenuPanel(canvas.transform, "Intro Panel", new Vector2(720f, 320f));
+        panel.color = Hex("203330", 0.92f);
+
+        AddMenuText(panel.transform, "Title Label", "RELIC DASH", 74f, Hex("f3d38a"), new Vector2(0f, 72f), new Vector2(640f, 96f), FontStyles.Bold);
+        AddMenuText(panel.transform, "Subtitle Label", "FOREST RUINS", 28f, Hex("eef2ec"), new Vector2(0f, 16f), new Vector2(640f, 46f), FontStyles.Bold);
+        AddMenuText(panel.transform, "Prompt Label", "LEFT CLICK / RIGHT CLICK / SPACE", 22f, Hex("8fb7ac"), new Vector2(0f, -88f), new Vector2(640f, 48f), FontStyles.Bold);
+
+        GameObject controllerObject = new GameObject("Intro Controller");
+        var controller = controllerObject.AddComponent<IntroController>();
+        controller.stageSelectSceneName = StageSelectSceneName;
+
+        EditorSceneManager.SaveScene(EditorSceneManager.GetActiveScene(), IntroScenePath);
+        AssetDatabase.ImportAsset(IntroScenePath);
+    }
+
+    public static void CreateOrUpdateStageSelectScene()
+    {
+        CreateFreshScene(StageSelectScenePath);
+
+        Camera camera = CreateMenuCamera();
+        camera.backgroundColor = Hex("1c2a28");
+
+        Canvas canvas = CreateMenuCanvas();
+        CreateEventSystem();
+
+        Image panel = CreateMenuPanel(canvas.transform, "Stage Select Panel", new Vector2(760f, 520f));
+        panel.color = Hex("203330", 0.94f);
+
+        AddMenuText(panel.transform, "Title Label", "STAGE SELECT", 48f, Hex("f3d38a"), new Vector2(0f, 190f), new Vector2(660f, 72f), FontStyles.Bold);
+        AddMenuText(panel.transform, "Hint Label", "CLEAR STAGES TO UNLOCK THE NEXT PATH", 18f, Hex("8fb7ac"), new Vector2(0f, 140f), new Vector2(660f, 36f), FontStyles.Bold);
+
+        AddStageSelectButton(panel.transform, "Stage 1-1 Button", "STAGE 1-1", StageSceneConfig.Stage01Name, 1, new Vector2(0f, 70f));
+        AddStageSelectButton(panel.transform, "Stage 1-2 Button", "STAGE 1-2", StageSceneConfig.Stage02Name, 2, new Vector2(0f, 0f));
+        AddStageSelectButton(panel.transform, "Stage 1-3 Button", "STAGE 1-3", StageSceneConfig.Stage03Name, 3, new Vector2(0f, -70f));
+        AddStageSelectButton(panel.transform, "Stage 1-4 Button", "STAGE 1-4", StageSceneConfig.Stage04Name, 4, new Vector2(0f, -140f));
+
+        EditorSceneManager.SaveScene(EditorSceneManager.GetActiveScene(), StageSelectScenePath);
+        AssetDatabase.ImportAsset(StageSelectScenePath);
+    }
+
     public static void CreateOrUpdateStage02Scene()
     {
         CopyStageSceneFromBaseline(Stage02ScenePath);
@@ -294,7 +358,7 @@ public static class CodexDashPlatformerSceneSetup
         ConfigureStageScene(
             Stage04ScenePath,
             "STAGE 1-4",
-            "",
+            IntroSceneName,
             () => ApplyStageProgressionLayout(
                 new[]
                 {
@@ -326,21 +390,28 @@ public static class CodexDashPlatformerSceneSetup
 
     public static void RegisterStageScenesInBuildSettings()
     {
-        string[] stagePaths =
+        RegisterMenuAndStageScenesInBuildSettings();
+    }
+
+    public static void RegisterMenuAndStageScenesInBuildSettings()
+    {
+        string[] scenePaths =
         {
+            IntroScenePath,
+            StageSelectScenePath,
             Stage01ScenePath,
             Stage02ScenePath,
             Stage03ScenePath,
             Stage04ScenePath,
         };
 
-        var scenes = stagePaths
+        var scenes = scenePaths
             .Select(path => new EditorBuildSettingsScene(path, true))
             .ToList();
 
         foreach (EditorBuildSettingsScene existingScene in EditorBuildSettings.scenes)
         {
-            if (!stagePaths.Contains(existingScene.path))
+            if (!scenePaths.Contains(existingScene.path))
             {
                 scenes.Add(existingScene);
             }
@@ -348,7 +419,7 @@ public static class CodexDashPlatformerSceneSetup
 
         EditorBuildSettings.scenes = scenes.ToArray();
         AssetDatabase.SaveAssets();
-        Debug.Log("[CodexDashPlatformerSceneSetup] Stage progression scenes registered in Build Settings.");
+        Debug.Log("[CodexDashPlatformerSceneSetup] Menu and stage scenes registered in Build Settings.");
     }
 
     public static void ApplyPlayerSpriteScale()
@@ -550,6 +621,136 @@ public static class CodexDashPlatformerSceneSetup
         AssetDatabase.ImportAsset(targetScenePath);
     }
 
+    private static void CreateFreshScene(string scenePath)
+    {
+        if (AssetDatabase.LoadAssetAtPath<SceneAsset>(scenePath) != null)
+        {
+            BackupAssetFile(scenePath);
+            AssetDatabase.DeleteAsset(scenePath);
+        }
+
+        EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
+    }
+
+    private static Camera CreateMenuCamera()
+    {
+        GameObject cameraObject = new GameObject("Main Camera");
+        cameraObject.tag = "MainCamera";
+        cameraObject.transform.position = new Vector3(0f, 0f, -10f);
+
+        Camera camera = cameraObject.AddComponent<Camera>();
+        camera.orthographic = true;
+        camera.orthographicSize = 5f;
+        camera.clearFlags = CameraClearFlags.SolidColor;
+        return camera;
+    }
+
+    private static Canvas CreateMenuCanvas()
+    {
+        GameObject canvasObject = new GameObject("Canvas");
+        Canvas canvas = canvasObject.AddComponent<Canvas>();
+        canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+
+        CanvasScaler scaler = canvasObject.AddComponent<CanvasScaler>();
+        scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+        scaler.referenceResolution = new Vector2(1280f, 720f);
+        scaler.matchWidthOrHeight = 0.5f;
+
+        canvasObject.AddComponent<GraphicRaycaster>();
+        return canvas;
+    }
+
+    private static void CreateEventSystem()
+    {
+        GameObject eventSystemObject = new GameObject("EventSystem");
+        eventSystemObject.AddComponent<EventSystem>();
+        eventSystemObject.AddComponent<StandaloneInputModule>();
+    }
+
+    private static Image CreateMenuPanel(Transform parent, string name, Vector2 size)
+    {
+        GameObject panelObject = new GameObject(name);
+        panelObject.transform.SetParent(parent, false);
+
+        RectTransform rect = panelObject.AddComponent<RectTransform>();
+        rect.anchorMin = new Vector2(0.5f, 0.5f);
+        rect.anchorMax = new Vector2(0.5f, 0.5f);
+        rect.pivot = new Vector2(0.5f, 0.5f);
+        rect.anchoredPosition = Vector2.zero;
+        rect.sizeDelta = size;
+
+        Image panel = panelObject.AddComponent<Image>();
+        panel.raycastTarget = false;
+        return panel;
+    }
+
+    private static TextMeshProUGUI AddMenuText(
+        Transform parent,
+        string name,
+        string text,
+        float fontSize,
+        Color color,
+        Vector2 position,
+        Vector2 size,
+        FontStyles fontStyle)
+    {
+        GameObject textObject = new GameObject(name);
+        textObject.transform.SetParent(parent, false);
+
+        RectTransform rect = textObject.AddComponent<RectTransform>();
+        rect.anchorMin = new Vector2(0.5f, 0.5f);
+        rect.anchorMax = new Vector2(0.5f, 0.5f);
+        rect.pivot = new Vector2(0.5f, 0.5f);
+        rect.anchoredPosition = position;
+        rect.sizeDelta = size;
+
+        TextMeshProUGUI label = textObject.AddComponent<TextMeshProUGUI>();
+        label.text = text;
+        label.fontSize = fontSize;
+        label.fontStyle = fontStyle;
+        label.alignment = TextAlignmentOptions.Center;
+        label.color = color;
+        label.raycastTarget = false;
+        return label;
+    }
+
+    private static void AddStageSelectButton(Transform parent, string name, string labelText, string targetSceneName, int requiredStageNumber, Vector2 position)
+    {
+        GameObject buttonObject = new GameObject(name);
+        buttonObject.transform.SetParent(parent, false);
+
+        RectTransform rect = buttonObject.AddComponent<RectTransform>();
+        rect.anchorMin = new Vector2(0.5f, 0.5f);
+        rect.anchorMax = new Vector2(0.5f, 0.5f);
+        rect.pivot = new Vector2(0.5f, 0.5f);
+        rect.anchoredPosition = position;
+        rect.sizeDelta = new Vector2(360f, 54f);
+
+        Image image = buttonObject.AddComponent<Image>();
+        image.color = Hex("e8b24a");
+
+        Button button = buttonObject.AddComponent<Button>();
+        ColorBlock colors = button.colors;
+        colors.normalColor = Hex("e8b24a");
+        colors.highlightedColor = Hex("f3d38a");
+        colors.pressedColor = Hex("c99a3d");
+        colors.selectedColor = Hex("f3d38a");
+        colors.disabledColor = Hex("293b37", 0.85f);
+        button.colors = colors;
+
+        TextMeshProUGUI label = AddMenuText(buttonObject.transform, "Label", labelText, 24f, Hex("233230"), Vector2.zero, new Vector2(320f, 44f), FontStyles.Bold);
+        label.raycastTarget = false;
+
+        StageSelectButton stageButton = buttonObject.AddComponent<StageSelectButton>();
+        stageButton.targetSceneName = targetSceneName;
+        stageButton.requiredStageNumber = requiredStageNumber;
+        stageButton.label = label;
+        stageButton.unlockedLabel = labelText;
+        stageButton.lockedLabel = "LOCKED";
+        stageButton.unlockedTextColor = Hex("233230");
+        stageButton.lockedTextColor = Hex("8fb7ac");
+    }
+
     private static void ConfigureStageScene(string scenePath, string stageLabel, string nextSceneName, Action configureLayout)
     {
         var scene = EditorSceneManager.OpenScene(scenePath, OpenSceneMode.Single);
@@ -557,9 +758,60 @@ public static class CodexDashPlatformerSceneSetup
         configureLayout?.Invoke();
         ConfigureStageLabel(stageLabel);
         ConfigureStageNextSceneName(nextSceneName);
+        ConfigureComingSoonClearUi(scenePath == Stage04ScenePath);
 
         EditorSceneManager.MarkSceneDirty(scene);
         EditorSceneManager.SaveScene(scene);
+    }
+
+    private static void ConfigureComingSoonClearUi(bool isFinalStage)
+    {
+        GameManager manager = UnityEngine.Object.FindFirstObjectByType<GameManager>(FindObjectsInactive.Include);
+        if (manager == null || manager.clearUI == null)
+        {
+            return;
+        }
+
+        GameObject clearUI = manager.clearUI;
+        TextMeshProUGUI clearText = clearUI.GetComponent<TextMeshProUGUI>();
+        if (clearText != null)
+        {
+            clearText.text = "CLEAR";
+            clearText.fontSize = isFinalStage ? 58f : 64f;
+            clearText.color = isFinalStage ? Hex("f3d38a") : Color.white;
+            clearText.margin = isFinalStage ? new Vector4(0f, 0f, 0f, 42f) : Vector4.zero;
+            EditorUtility.SetDirty(clearText);
+        }
+
+        if (!isFinalStage)
+        {
+            Transform existingLabel = clearUI.transform.Find("Coming Soon Label");
+            if (existingLabel != null)
+            {
+                existingLabel.gameObject.SetActive(false);
+            }
+
+            return;
+        }
+
+        GameObject labelObject = FindChildOrCreate(clearUI.transform, "Coming Soon Label");
+        labelObject.SetActive(true);
+
+        RectTransform rect = EnsureComponent<RectTransform>(labelObject);
+        rect.anchorMin = new Vector2(0.5f, 0.5f);
+        rect.anchorMax = new Vector2(0.5f, 0.5f);
+        rect.pivot = new Vector2(0.5f, 0.5f);
+        rect.anchoredPosition = new Vector2(0f, -42f);
+        rect.sizeDelta = new Vector2(360f, 42f);
+
+        TextMeshProUGUI label = labelObject.GetComponent<TextMeshProUGUI>() ?? labelObject.AddComponent<TextMeshProUGUI>();
+        label.text = "COMING SOON";
+        label.fontSize = 28f;
+        label.fontStyle = FontStyles.Bold;
+        label.alignment = TextAlignmentOptions.Center;
+        label.color = Hex("eef2ec");
+        label.raycastTarget = false;
+        EditorUtility.SetDirty(label);
     }
 
     private static void ApplyStageProgressionLayout(
@@ -1109,6 +1361,17 @@ public static class CodexDashPlatformerSceneSetup
         renderer.color = Color.black;
         renderer.sortingLayerName = "Foreground";
         renderer.sortingOrder = 100;
+    }
+
+    private static Color Hex(string hex, float alpha = 1f)
+    {
+        if (!ColorUtility.TryParseHtmlString("#" + hex, out Color color))
+        {
+            throw new ArgumentException("Invalid color hex: " + hex);
+        }
+
+        color.a = alpha;
+        return color;
     }
 
     private static void ConfigureDeadZone(Transform parent)

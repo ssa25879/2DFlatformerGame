@@ -85,6 +85,40 @@ public class GameManager : MonoBehaviour
         return sceneName.Length > 0;
     }
 
+    public static bool TryGetStageNumberForTest(string sceneName, out int stageNumber)
+    {
+        stageNumber = 0;
+        if (string.IsNullOrWhiteSpace(sceneName))
+        {
+            return false;
+        }
+
+        int digitStartIndex = sceneName.Length;
+        while (digitStartIndex > 0 && char.IsDigit(sceneName[digitStartIndex - 1]))
+        {
+            digitStartIndex--;
+        }
+
+        if (digitStartIndex == sceneName.Length)
+        {
+            return false;
+        }
+
+        return int.TryParse(sceneName.Substring(digitStartIndex), out stageNumber) && stageNumber > 0;
+    }
+
+    public static bool TryGetStageToUnlockForTest(string currentSceneName, out int stageToUnlock)
+    {
+        stageToUnlock = 0;
+        if (!TryGetStageNumberForTest(currentSceneName, out int currentStageNumber))
+        {
+            return false;
+        }
+
+        stageToUnlock = currentStageNumber + 1;
+        return true;
+    }
+
     private void InitializeSingleton()
     {
         if (instance == null)
@@ -143,7 +177,7 @@ public class GameManager : MonoBehaviour
 
     public void OnStageCleared()
     {
-        if (isGameover)
+        if (isGameover || isCleared)
         {
             return;
         }
@@ -151,6 +185,7 @@ public class GameManager : MonoBehaviour
         isCleared = true;
         stateChangedTime = Time.time;
         UniRunLogger.Info("GameManager", "Stage clear state entered.", this);
+        UnlockNextStageFromActiveScene();
         if (clearUI != null)
         {
             clearUI.SetActive(true);
@@ -160,6 +195,18 @@ public class GameManager : MonoBehaviour
         {
             gameoverUI.SetActive(false);
         }
+    }
+
+    private void UnlockNextStageFromActiveScene()
+    {
+        string sceneName = SceneManager.GetActiveScene().name;
+        if (!TryGetStageToUnlockForTest(sceneName, out int stageToUnlock))
+        {
+            return;
+        }
+
+        StageProgress.UnlockStage(stageToUnlock);
+        UniRunLogger.Info("GameManager", "Unlocked stage number: " + stageToUnlock, this);
     }
 
     public void InitializeForTest()
